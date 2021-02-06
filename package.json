@@ -1,0 +1,30 @@
+{
+  "name": "alyx.js",
+  "version": "1.0.0",
+  "description": "A Simple NodeJS Discord Library",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alyx-js/alyx.js.git"
+  },
+  "keywords": [
+    "discord-api",
+    "discordapp",
+    "discord",
+    "AlyxJS",
+    "wrapper",
+    "Alyx.js"
+  ],
+  "author": "Alyx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alyx-js/alyx.js/issues"
+  },
+  "dependencies": {
+    "ws": "^4.0.0",
+    "superagent":"^3.8.2"
+  }
+}
