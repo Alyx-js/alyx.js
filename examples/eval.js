@@ -5,7 +5,7 @@
 * we will add a simple check for that
 */
 
-const DiscordTNT = require("discord-tnt");
+const AlyxJS = require("alyx.js");
 const client = new Discord.Client({
  TOKEN:"YOUR BOT TOKEN",
  GAME: "with Eval",

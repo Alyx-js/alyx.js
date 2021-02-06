@@ -1,7 +1,7 @@
 // A better example to further show the library and make it
 // easier to understand
-const DiscordTNT = require("discord-tnt"); // require it
-const client = new DiscordTNT.Client({ // create a client
+const AlyxJS = require("alyx.js"); // require it
+const client = new AlyxJS.Client({ // create a client
 	TOKEN:"Your Bot Token",
 	DEBUG:true
 });
