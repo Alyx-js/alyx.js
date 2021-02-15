@@ -268,25 +268,11 @@ this.ws.on('message', gatewayMsg => {
   	this.connect();
  }
  if(op === Constants.GatewayOpCodes.EVENT_DISPATCH && type === "GUILD_CREATE") {
-//	 this.client.guilds.set(data.id, data);
-	 let guild = this.client.guilds.get(data.id);
-	 if (guild) {
-		 if (!guild.available && !data.unavailable) {
-			 guild._patch(data);
-		 }
-	 } else {
-		 data.shardID = shard.id;
-		 guild = client.guilds.add(data);
-	if (client.ws.status === Status.READY) {
-      /**
-       * Emitted whenever the client joins a guild.
-       * @event Client#guildCreate
-       * @param {Guild} guild The created guild
-       */
-      client.emit(Events.GUILD_CREATE, guild);
+	 this.client.guilds.set(data.id, data);
+	for (const channel of this.client.guilds){ this.client.channels.set(channel.id, channel)};
+
+//		this.client.emit("guildCreate", data);
     }
-  }
-     }
 });
 this.ws.on("close", (code, reason) => {
 	if(this.client.DEBUG) console.log(`[GATEWAY] [CLOSE] Code: ${code}, Reason: ${reason}.`);
