@@ -269,10 +269,7 @@ this.ws.on('message', gatewayMsg => {
  }
  if(op === Constants.GatewayOpCodes.EVENT_DISPATCH && type === "GUILD_CREATE") {
 	 this.client.guilds.set(data.id, data);
-	for (const channel of this.client.guilds){ this.client.channels.set(channel.id, channel)};
-
-//		this.client.emit("guildCreate", data);
-    }
+     }
 });
 this.ws.on("close", (code, reason) => {
 	if(this.client.DEBUG) console.log(`[GATEWAY] [CLOSE] Code: ${code}, Reason: ${reason}.`);

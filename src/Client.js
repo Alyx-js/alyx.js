@@ -5,7 +5,6 @@ const Errors = require("./DiscordErrors.js")
 const superagent = require("superagent");
 const Collection = require("./utils/Collection.js");
 const RestMethods = require("./RestMethods.js");
-const NSFW = require(`./Structures/nsfw.js`);
 
 /**
 * Client class Main class for making a discord client instance.
@@ -84,7 +83,7 @@ class Client extends EventEmitter {
    * @type {Collection}
    */
    this.channels = new Collection();
-
+   
    /**
    * The logged in user, null if not connected.
    * @type {Self}
@@ -103,6 +102,7 @@ class Client extends EventEmitter {
    */
    this.gameType = options.type || 0;
 }
+
  /**
  * Send a message to a channel, bot must have SEND_MESSAGES permission.
  * @param {string} channel - The channel's ID to send message to.
@@ -120,7 +120,20 @@ class Client extends EventEmitter {
  	 .then(res => {
  	 	 return resolve(res.body);
  	 }).catch(err => reject(err));
-	});
+ 	});
+ }
+
+isNSFW(channel, message) {
+ return new Promise((resolve, reject) => {
+ 	 superagent
+ 	 .get(`/channels/${channel}`)
+ 	 .set("Authorization", "Bot " + this.TOKEN)
+ 	 .set("User-Agent", Constants.userAgent)
+ 	 .then(res => {
+ 	 	 	if (res.body.nsfw){ this.isNSFW === true;
+			} else { this.isNSFW === false }
+ 	 }).catch(err => reject(err));
+ 	});
  }
  /**
  * Send an embed to a channel.
@@ -139,18 +152,6 @@ class Client extends EventEmitter {
  	});
  }
 
-async checkNSFW(channel) {
- 	if(!channel) throw new RangeError("You must provide a channel!");
-	return new Promise(async (resolve, reject) => {
-	const { body } = await superagent
- 	 .get(`https://discord.com/api/v${Constants.API_VERSION}/channels/${channel}`)
- 	 .set("Authorization", "Bot " + this.TOKEN)
-	 .set("User-Agent", Constants.userAgent)
-	 resolve(Boolean(body.nsfw))
-	console.log(body.nsfw);
-})
-}
-//nsfw = this.checkNSFW().then(res => console.log(res.nsfw))
 /**
 * Connect the client, creates a WebSocketConnection instance
 * That connects the client and does the job.

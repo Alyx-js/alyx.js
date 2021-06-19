@@ -8,6 +8,5 @@ module.exports = {
 	   Collection: require("./utils/Collection.js"),
 	   logger: require("./utils/Logger.js"),
 	   Constants: require("./Constants.js"),
-	   TextChannel: require("./Structures/TextChannel.js"),
-	   Nsfw: require("./Structures/nsfw.js")
+	   TextChannel: require("./Structures/TextChannel.js")
 };

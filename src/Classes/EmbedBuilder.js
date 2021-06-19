@@ -6,40 +6,42 @@
 * the setters also return the instance itself so its possible to chain multiple setters.
 */
 class EmbedBuilder {
-	constructor(embed = {}) {
-		
+	constructor(data = {}) {
+
 		/**
 		* Embed Title
 		* @type {String}
 		*/
-		this.title = embed.title;
-		
+		this.title = data.title;
+
 		/**
 		* The embed description
 		* @type {String}
 		*/
-		this.description = embed.description;
-		
-		/**
+		this.description = data.description;
+			/**
 		* The color of the embed
 		* @type {Number}
 		*/
-		this.color = embed.color;
-		
+		this.color = data.color;
+
+		/**
+		* The embed Image
+		* @type {String}
+		*/
+		this.image = data.image;
+
 		/**
 		* Embed fields in an array.
 		* @type {Array}
 		*/
-		this.fields = embed.fields || [];
-		
+		this.fields = data.fields || [];
+
 		/**
 		* The Embed Footer
 		* @type {Object}
 		*/
-		this.footer = {
-		  text: embed.footer.text,
-		  icon_url: embed.footer.iconURL
-		}
+		this.footer = data.footer  ;
 	}
 
   /**
@@ -68,6 +70,11 @@ class EmbedBuilder {
   	 }
   	this.description = description;
   	return this;
+  }
+
+  setImageUrl(url) {
+    this.image = { url };
+    return this;
   }
   /**
   * Set the embed color
@@ -110,7 +117,6 @@ class EmbedBuilder {
     this.footer.icon_url = iconURL;
     return this;
   }
-  
 }
 
 module.exports = EmbedBuilder;
